@@ -1,6 +1,8 @@
 ipset-fail2ban
 ===============
 
+UPDATE: I added Chain rule for Docker as well (if passed true to param) because Docker and iptables don't mix well.
+
 A small bash script to create an [ipset blacklist](http://ipset.netfilter.org/) from banned IP addresses from (multiple) 
 [fail2ban jails](https://github.com/fail2ban/fail2ban), and incorporate it into an iptables rule. This project was 
 inspired by [ipset-blacklist](https://github.com/trick77/ipset-blacklist), which creates ipset blacklists from 
@@ -27,7 +29,7 @@ effectively self updating.
 ## Instructions for Debian/Ubuntu based installations
 1. Grab the **ipset-fail2ban.sh** and save it somewhere that makes sense. Make it executable.
     ```
-    sudo wget -O /usr/local/sbin/ipset-fail2ban.sh https://raw.githubusercontent.com/ritsu/ipset-fail2ban/master/ipset-fail2ban.sh && sudo chmod +x /usr/local/sbin/ipset-fail2ban.sh
+    sudo wget -O /usr/local/sbin/ipset-fail2ban.sh https://raw.githubusercontent.com/nanocode012/ipset-fail2ban/master/ipset-fail2ban.sh && sudo chmod +x /usr/local/sbin/ipset-fail2ban.sh
     ```
 2. You can run the script without a configuration file to test. Replace `JAIL1,JAIL2,JAIL3` with your fail2ban jails. 
 Use `-h` to see a list of options.
@@ -37,7 +39,7 @@ Use `-h` to see a list of options.
     ```
 3. Grab the default configuration file.
     ```
-    sudo mkdir -p /etc/ipset-fail2ban && sudo wget -O /etc/ipset-fail2ban/ipset-fail2ban.conf https://raw.githubusercontent.com/ritsu/ipset-fail2ban/master/ipset-fail2ban.conf
+    sudo mkdir -p /etc/ipset-fail2ban && sudo wget -O /etc/ipset-fail2ban/ipset-fail2ban.conf https://raw.githubusercontent.com/nanocode012/ipset-fail2ban/master/ipset-fail2ban.conf
     ```
 4. Modify **ipset-fail2ban.conf** according to your needs. Particularly,
 - `JAILS` will need to be set according to your fail2ban setup
